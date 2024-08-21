@@ -1,26 +1,220 @@
-<strong>** DO NOT DISTRIBUTE OR PUBLICLY POST SOLUTIONS TO THESE LABS. MAKE ALL FORKS OF THIS REPOSITORY WITH SOLUTION CODE PRIVATE. PLEASE REFER TO THE STUDENT CODE OF CONDUCT AND ETHICAL EXPECTATIONS FOR COLLEGE OF INFORMATION TECHNOLOGY STUDENTS FOR SPECIFICS. ** </strong>
+# Changes C-J
 
-# WESTERN GOVERNORS UNIVERSITY 
-## D287 – JAVA FRAMEWORKS
-Welcome to Java Frameworks! This is an opportunity for students to implement user interfaces and learn to leverage existing frameworks, assets, and content for object-oriented programming.
-FOR SPECIFIC TASK INSTRUCTIONS AND REQUIREMENTS FOR THIS ASSESSMENT, PLEASE REFER TO THE COURSE PAGE.
-## BASIC INSTRUCTIONS
-For this project, you will use the Integrated Development Environment (IDE) link in the web links section of this assessment to install the IDE, IntelliJ IDEA (Ultimate Edition). All relevant links are on the course page. Please refer to the course of study for specific links. You will sign up for a free student license using your WGU.edu email address. Please see the “IntelliJ Ultimate Edition Instructions” attachment for instructions on how do this. Next you will download the “Inventory Management Application Template Code” provided in the web links section and open it in IntelliJ IDEA (Ultimate Edition). You will upload this project to a private external GitLab repository and backup regularly. As a part of this, you have been provided with a base code (starting point). 
+## C
+Customize the HTML user interface for your customer’s application. The user interface should include the shop name, the product names, and the names of the parts.
+mainscreen  - line 14 chaged title to " my Golf Shop"
+            -line 19 Change name of the shop to `Swinging Richard's Golf Shop"
+            - line 14 - 160 add inline css to change colors of page and tables.
+           
+             <style>
+            .header-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            }
 
-## SUPPLEMENTAL RESOURCES  
-1.	How to clone a project to IntelliJ using Git?
+        body {
+            margin: 0;
+            padding: 0;
+            color: #000;
+            background-color: black; /* Changes background to black */
+            font-family: "Gill Sans", Helvetica, Arial, sans-serif;
+            font-size: 1em;
+            line-height: 1.2;
+        }
 
-> Ensure that you have Git installed on your system and that IntelliJ is installed using [Toolbox](https://www.jetbrains.com/toolbox-app/). Make sure that you are using version 2022.3.2. Once this has been confirmed, click the clone button and use the 'IntelliJ IDEA (HTTPS)' button. This will open IntelliJ with a prompt to clone the proejct. Save it in a safe location for the directory and press clone. IntelliJ will prompt you for your credentials. Enter in your WGU Credentials and the project will be cloned onto your local machine.  
+        h1 {
+            margin: 0;
+            margin-top: 0.67em;
+            font-weight: bold;
+            font-size: 1.8em;
+            line-height: 1;
+            text-align: center; /* Centers the title */
+            color: #ff0000; /* Changes title color to red */
+        }
 
-2. How to create a branch and start Development?
+        h2 {
+            margin: 0 0 1em;
+            color: #ff0000; /* Changes h2 color to red */
+        }
 
-- GitLab method
-> Press the '+' button located near your branch name. In the dropdown list, press the 'New branch' button. This will allow you to create a name for your branch. Once the branch has been named, you can select 'Create Branch' to push the branch to your repository.
+        p {
+            margin: 1em 0 1.5em;
+            line-height: 1.5;
+        }
 
-- IntelliJ method
-> In IntelliJ, Go to the 'Git' button on the top toolbar. Select the new branch option and create a name for the branch. Make sure checkout branch is selected and press create. You can now add a commit message and push the new branch to the local repo.
+        a:link {
+            color: black; /* Changes link color to red */
+            background-color: transparent;
+        }
 
-## SUPPORT
-If you need additional support, please navigate to the course page and reach out to your course instructor.
-## FUTURE USE
-Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
+        a:visited {
+            color: darkgrey; /* Changes visited link color to dark red */
+            background-color: transparent;
+        }
+
+        a:focus {
+            color: #fff;
+            background-color: #000;
+            outline: 0;
+        }
+
+        a:active {
+            color: #ff0000;
+            background-color: transparent;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 60em;
+            background: black; /* Changes container background to black */
+        }
+        .thead-dark {
+            background-color: black; /* Changes table header background to black */
+            color: red; /* Changes table header text color to white */
+        }
+
+        .navigation-primary ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            overflow: hidden;
+        }
+
+        .navigation-primary li {
+            display: inline;
+        }
+
+        .navigation-primary a {
+            float: left;
+            padding: .5em 1em;
+            color: #fff;
+            background: #000;
+            text-decoration: none;
+            border-right: 1px solid #fff;
+        }
+
+        .navigation-primary a:hover {
+            background: #ff0000; /* Changes hover background to red */
+        }
+
+        .navigation-primary a:focus {
+            background: #000;
+            outline: none;
+        }
+
+        .navigation-primary a:active {
+            background: #ff0000; /* Changes active background to red */
+        }
+
+        .footer-primary {
+            background-color: #000; /* Changes footer background to black */
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Form styling */
+        form {
+            color: #ff0000; /* Changes form text color to red */
+        }
+
+        input[type="text"] {
+            background-color: #000; /* Changes input background to black */
+            color: #ff0000; /* Changes input text color to red */
+            border: 1px solid #ff0000; /* Adds a red border */
+        }
+
+        input[type="submit"], input[type="button"] {
+            background-color: #ff0000; /* Changes button background to red */
+            color: #fff; /* Changes button text color to white */
+            border: 1px solid #ff0000; /* Adds a red border */
+        }
+
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #800000; /* Changes button background on hover to dark red */
+            border: 1px solid #800000; /* Changes button border on hover to dark red */
+        }
+
+        table.table {
+            color: #000; /* Changes table text color to black */
+            background-color: #fff; /* Changes table background color to white */
+        }
+        form {
+            color: #ff0000; /* Changes form text color to red */
+            background-color: #333; /* Changes form background color to dark gray */
+            padding: 15px; /* Adds some padding inside the form */
+            border-radius: 5px; /* Optional: adds rounded corners */
+        }
+        tbody tr:nth-child(odd) {
+            background-color: darkred; /* Changes odd rows to light gray */
+        }
+        tbody tr:nth-child(even) {
+            background-color: red; /* Changes odd rows to light gray */
+        }
+    </style>
+
+
+        }
+added matching css for line 12-72 of inhouse/products/outsourced forms.
+
+        <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: #ff0000; /* Red text color */
+            background-color: black; /* Black background */
+            font-family: "Gill Sans", Helvetica, Arial, sans-serif;
+            font-size: 1.2em;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 20px;
+            color: #ff0000;
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #ff0000;
+        }
+
+        a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #333;
+            border-radius: 5px;
+            border: 2px solid #ff0000;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #800000; /* Dark red hover effect */
+        }
+        </style>
+mainscreen line 185 
+            - changed "parts" to "indvidual clubs"
+main screen line 186
+            - changed "products" to "club sets"
+
+## D
+
+
+## E
+
+
+## F
+
+## G
+
+## H
+
+## I
+
+## J

@@ -8,6 +8,70 @@
 
 <!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
 </head>
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 20px;
+        background-color: black; /* Black background for the entire page */
+        color: #ff0000; /* Red text color */
+        font-family: "Gill Sans", Helvetica, Arial, sans-serif;
+        font-size: 1em;
+        line-height: 1.2;
+    }
+
+    h1 {
+        text-align: center; /* Center the header */
+        color: #ff0000; /* Red color for the title */
+        margin-bottom: 20px;
+    }
+
+    form {
+        background-color: #333; /* Dark grey background for the form */
+        padding: 20px;
+        border-radius: 10px; /* Rounded corners */
+        max-width: 500px;
+        margin: 0 auto; /* Center the form on the page */
+        box-shadow: 0px 0px 10px 2px rgba(255, 0, 0, 0.5); /* Red shadow effect */
+    }
+
+    input[type="text"], input[type="submit"] {
+        width: 100%; /* Full width inputs */
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px; /* Rounded corners */
+        border: 1px solid #ff0000; /* Red border */
+        background-color: #444; /* Darker grey for inputs */
+        color: #ff0000; /* Red text inside the inputs */
+    }
+
+    input[type="submit"] {
+        background-color: #ff0000; /* Red background for the submit button */
+        color: #000; /* Black text color */
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #cc0000; /* Darker red on hover */
+    }
+
+    a {
+        color: #ff0000; /* Red links */
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #cc0000; /* Darker red on hover */
+    }
+
+    p.errors {
+        color: #ff0000; /* Red color for error messages */
+        font-weight: bold;
+        margin-top: -10px; /* Align errors with the input field */
+    }
+</style>
+
 <body>
 <h1>Product Detail</h1>
 <form action="#" th:action="@{/showFormAddProduct}" th:object="${product}" method="POST"}>
