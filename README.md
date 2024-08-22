@@ -204,6 +204,14 @@ main screen line 186
             - changed "products" to "club sets"
 
 ## D
+Added About page and foramted to fit the rest of the site.
+
+Mainscreencontroller line 56
+            - added mapping to link to about page.
+            - @GetMapping("/about")
+mainsceen line line 184 
+            - added link to about page.
+            - <a href="/about">About</a>
 
 
 ## E
