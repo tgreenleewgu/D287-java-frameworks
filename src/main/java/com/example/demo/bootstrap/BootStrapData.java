@@ -1,5 +1,6 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
@@ -39,33 +40,93 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-       /*
-        OutsourcedPart o= new OutsourcedPart();
-        o.setCompanyName("Western Governors University");
-        o.setName("out test");
-        o.setInv(5);
-        o.setPrice(20.0);
-        o.setId(100L);
-        outsourcedPartRepository.save(o);
-        OutsourcedPart thePart=null;
-        List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-        for(OutsourcedPart part:outsourcedParts){
-            if(part.getName().equals("out test"))thePart=part;
+        if(partRepository.count()==0) {
+
+
+            InhousePart driver = new InhousePart();
+            driver.setName("Driver");
+            driver.setPrice(450.0);
+            driver.setInv(10);
+            driver.setPartId(1); // Assuming partId is an identifier specific to InhousePart
+            partRepository.save(driver);
+
+            InhousePart drivingIron = new InhousePart();
+            drivingIron.setName("Driving Iron");
+            drivingIron.setPrice(215.0);
+            drivingIron.setInv(6);
+            drivingIron.setPartId(2); // Assuming partId is an identifier specific to InhousePart
+            partRepository.save(drivingIron);
+
+            InhousePart irons = new InhousePart();
+            irons.setName("Irons");
+            irons.setPrice(1200.0);
+            irons.setInv(16);
+            irons.setPartId(3); // Assuming partId is an identifier specific to InhousePart
+            partRepository.save(irons);
+
+            InhousePart wedges = new InhousePart();
+            wedges.setName("Wedges");
+            wedges.setPrice(300.0);
+            wedges.setInv(15);
+            wedges.setPartId(4); // Assuming partId is an identifier specific to InhousePart
+            partRepository.save(wedges);
+
+
+            InhousePart putter = new InhousePart();
+            putter.setName("Putter");
+            putter.setPrice(175.0);
+            putter.setInv(12);
+            putter.setPartId(5); // Assuming partId is an identifier specific to InhousePart
+            partRepository.save(putter);
         }
 
-        System.out.println(thePart.getCompanyName());
-        */
+
+
         List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
         for(OutsourcedPart part:outsourcedParts){
             System.out.println(part.getName()+" "+part.getCompanyName());
         }
 
-        /*
-        Product bicycle= new Product("bicycle",100.0,15);
-        Product unicycle= new Product("unicycle",100.0,15);
-        productRepository.save(bicycle);
-        productRepository.save(unicycle);
-        */
+        if(productRepository.count()==0) {
+            ;
+
+            Product fullSet = new Product();
+            fullSet.setName("Full Set");
+            fullSet.setPrice(3000.0);
+            fullSet.setInv(12);
+            fullSet.setId(6);
+            productRepository.save(fullSet);
+
+            Product midRange = new Product();
+            midRange.setName("Mid Range Set");
+            midRange.setPrice(1500.0);
+            midRange.setInv(3);
+            midRange.setId(7);
+            productRepository.save(midRange);
+
+            Product drivingSet = new Product();
+            drivingSet.setName("Driving Set");
+            drivingSet.setPrice(670.0);
+            drivingSet.setInv(3);
+            drivingSet.setId(8);
+            productRepository.save(drivingSet);
+
+            Product shortSet = new Product();
+            shortSet.setName("Short Game Set");
+            shortSet.setPrice(480.0);
+            shortSet.setInv(5);
+            shortSet.setId(9);
+            productRepository.save(shortSet);
+
+            Product ironsOnly = new Product();
+            ironsOnly.setName("Irons Only Set");
+            ironsOnly.setPrice(1400.0);
+            ironsOnly.setInv(12);
+            ironsOnly.setId(10);
+            productRepository.save(ironsOnly);
+        }
+
+
 
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Products"+productRepository.count());
