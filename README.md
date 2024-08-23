@@ -297,26 +297,28 @@ used if statements to check if the repositories are empty before adding the part
             productRepository.save(ironsOnly);
 
 ## F
+
 added one line of code to create buy now button on main screen line 250
             - <a th:href="@{/buynow(productID=${tempProduct.id})}" class="btn btn-success btn-sm mb-3">Buy Now</a>
 added 3 new pages to code
 -class BuyNowController
-    -package com.example.demo.controllers;
+    
 
-import com.example.demo.domain.Product;
-import com.example.demo.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Optional;
-
-@Controller
-public class buyNowController {
-@Autowired
-private ProductRepository productRepository;
+    package com.example.demo.controllers;
+    import com.example.demo.domain.Product;
+    import com.example.demo.repositories.ProductRepository;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.RequestParam;
+    
+    import java.util.Optional;
+    
+    @Controller
+    public class buyNowController {
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/buynow")
     public String buyProduct(@RequestParam("productID") Long theId, Model theModel) {
@@ -337,10 +339,10 @@ private ProductRepository productRepository;
             return "/confirmfailure";  //purchase failed: product not found
         }
     }
-} 
+}
 
 confirmsuccess HTML page
-<!DOCTYPE html>
+        <!DOCTYPE html>
         <html lang="en">
         <head>
         <meta charset="UTF-8">
@@ -402,11 +404,11 @@ confirmsuccess HTML page
             text-decoration: underline;
         }
     </style>
-</head>
-<a href="http://localhost:8080/">Home</a>
-<body>
+    </head>
+    <a href="http://localhost:8080/">Home</a>
+    <body>
 
-<div class="container">
+    <div class="container">
     <h1>Purchase Successful!</h1>
     <p>Thank you for your purchase. Your order has been successfully processed.</p>
 
@@ -423,15 +425,16 @@ confirmsuccess HTML page
         <p><strong>Customer Support:</strong></p>
         <a href="mailto:support@example.com">support@example.com</a>
     </div>
-</div>
+    </div>
 
-</body>
-</html>
+    </body>
+    </html>
 
 confirmfailure HTML page 
-    -<!DOCTYPE html>
-<html lang="en">
-<head>
+
+    !DOCTYPE html>
+    <html lang="en">
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Unsuccessful</title>
@@ -489,11 +492,11 @@ confirmfailure HTML page
             text-decoration: underline;
         }
     </style>
-</head>
-<a href="http://localhost:8080/">Home</a>
-<body>
+    </head>
+    <a href="http://localhost:8080/">Home</a>
+    <body>
 
-<div class="container">
+    <div class="container">
     <h1>Purchase Unsuccessful</h1>
     <p>We’re sorry, but your purchase could not be completed at this time.</p>
     <p><strong>Possible reasons for this issue:</strong></p>
@@ -515,10 +518,10 @@ confirmfailure HTML page
         <p><strong>Customer Support:</strong></p>
         <a href="mailto:support@example.com">support@example.com</a>
     </div>
-</div>
+    </div>
 
-</body>
-</html>
+    </body>
+    </html>
 
 
 
