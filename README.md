@@ -297,7 +297,232 @@ used if statements to check if the repositories are empty before adding the part
             productRepository.save(ironsOnly);
 
 ## F
+added one line of code to create buy now button on main screen line 250
+            - <a th:href="@{/buynow(productID=${tempProduct.id})}" class="btn btn-success btn-sm mb-3">Buy Now</a>
+added 3 new pages to code
+-class BuyNowController
+    -package com.example.demo.controllers;
 
+import com.example.demo.domain.Product;
+import com.example.demo.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
+
+@Controller
+public class buyNowController {
+@Autowired
+private ProductRepository productRepository;
+
+    @GetMapping("/buynow")
+    public String buyProduct(@RequestParam("productID") Long theId, Model theModel) {
+        Optional<Product> productToBuy = productRepository.findById(theId);
+
+        if (productToBuy.isPresent()) {    //check if product in catalog
+            Product product = productToBuy.get();
+
+            if (product.getInv() > 0) {    //check if product still in stock
+                product.setInv(product.getInv() - 1);   //decrement stock
+                productRepository.save(product);    //save to product database
+
+                return "/confirmsuccess";   //successful purchase
+            } else {
+                return "/confirmfailure";   //purchase failed: out of stock
+            }
+        } else {
+            return "/confirmfailure";  //purchase failed: product not found
+        }
+    }
+} 
+
+confirmsuccess HTML page
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Purchase Successful</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #28a745;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .details {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            margin: 0;
+        }
+
+        .support {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .support a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .support a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<a href="http://localhost:8080/">Home</a>
+<body>
+
+<div class="container">
+    <h1>Purchase Successful!</h1>
+    <p>Thank you for your purchase. Your order has been successfully processed.</p>
+
+    <div class="details">
+        <p><strong>Order Number:</strong> #123456789</p>
+        <p><strong>Date:</strong> Month Day, Year</p>
+        <p><strong>Total Amount:</strong> $99.99</p>
+    </div>
+
+    <p>You will receive a confirmation email shortly with the details of your purchase.</p>
+    <p>If you have any questions or need further assistance, please don't hesitate to contact our support team.</p>
+
+    <div class="support">
+        <p><strong>Customer Support:</strong></p>
+        <a href="mailto:support@example.com">support@example.com</a>
+    </div>
+</div>
+
+</body>
+</html>
+
+confirmfailure HTML page 
+    -<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Unsuccessful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .support {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .support a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .support a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<a href="http://localhost:8080/">Home</a>
+<body>
+
+<div class="container">
+    <h1>Purchase Unsuccessful</h1>
+    <p>We’re sorry, but your purchase could not be completed at this time.</p>
+    <p><strong>Possible reasons for this issue:</strong></p>
+    <ul>
+        <li>Insufficient funds or incorrect payment details.</li>
+        <li>Network or connection issues.</li>
+        <li>The item is out of stock or no longer available.</li>
+        <li>Technical difficulties on our end.</li>
+    </ul>
+    <p><strong>What you can do:</strong></p>
+    <ul>
+        <li>Double-check your payment information and try again.</li>
+        <li>Ensure your internet connection is stable.</li>
+        <li>If the problem persists, please contact our customer support team for assistance.</li>
+    </ul>
+    <p>We apologize for the inconvenience and appreciate your understanding.</p>
+
+    <div class="support">
+        <p><strong>Customer Support:</strong></p>
+        <a href="mailto:support@example.com">support@example.com</a>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+    
 ## G
 
 ## H
