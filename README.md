@@ -215,8 +215,8 @@ mainsceen line line 184
 
 
 ## E
-added 5 part and 5 products to the part/products repositories. 
-used if statements to check if the repositories are empty before adding the parts/products.
+    added 5 part and 5 products to the part/products repositories. 
+    used if statements to check if the repositories are empty before adding the parts/products.
 
         if(partRepository.count()==0) {
 
@@ -341,7 +341,7 @@ added 3 new pages to code
     }
 }
 
-confirmsuccess HTML page
+    confirmsuccess HTML page
         <!DOCTYPE html>
         <html lang="en">
         <head>
