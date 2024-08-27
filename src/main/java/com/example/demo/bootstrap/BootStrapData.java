@@ -47,6 +47,8 @@ public class BootStrapData implements CommandLineRunner {
             driver.setName("Driver");
             driver.setPrice(450.0);
             driver.setInv(10);
+            driver.setMinInventory(0);
+            driver.setMaxInventory(50);
             driver.setPartId(1); // Assuming partId is an identifier specific to InhousePart
             partRepository.save(driver);
 
@@ -54,6 +56,8 @@ public class BootStrapData implements CommandLineRunner {
             drivingIron.setName("Driving Iron");
             drivingIron.setPrice(215.0);
             drivingIron.setInv(6);
+            drivingIron.setMinInventory(0);
+            drivingIron.setMaxInventory(50);
             drivingIron.setPartId(2); // Assuming partId is an identifier specific to InhousePart
             partRepository.save(drivingIron);
 
@@ -61,6 +65,8 @@ public class BootStrapData implements CommandLineRunner {
             irons.setName("Irons");
             irons.setPrice(1200.0);
             irons.setInv(16);
+            irons.setMinInventory(0);
+            irons.setMaxInventory(50);
             irons.setPartId(3); // Assuming partId is an identifier specific to InhousePart
             partRepository.save(irons);
 
@@ -68,6 +74,8 @@ public class BootStrapData implements CommandLineRunner {
             wedges.setName("Wedges");
             wedges.setPrice(300.0);
             wedges.setInv(15);
+            wedges.setMinInventory(0);
+            wedges.setMaxInventory(50);
             wedges.setPartId(4); // Assuming partId is an identifier specific to InhousePart
             partRepository.save(wedges);
 
@@ -76,6 +84,8 @@ public class BootStrapData implements CommandLineRunner {
             putter.setName("Putter");
             putter.setPrice(175.0);
             putter.setInv(12);
+            putter.setMinInventory(0);
+            putter.setMaxInventory(50);
             putter.setPartId(5); // Assuming partId is an identifier specific to InhousePart
             partRepository.save(putter);
         }

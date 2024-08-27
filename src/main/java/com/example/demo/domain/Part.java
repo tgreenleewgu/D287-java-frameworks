@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.validators.ValidDeletePart;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -27,7 +28,15 @@ public abstract class Part implements Serializable {
     @Min(value = 0, message = "Price value must be positive")
     double price;
     @Min(value = 0, message = "Inventory value must be positive")
+    @Max(value = 50, message = "Inventory value must be less than 50")
     int inv;
+
+    //@Min(value = 0, message = "Minimum value must be positive")
+    int minInventory;
+
+    //@Min(value = 0, message = "Maximum value must be positive")
+    //@Max(value = 50, message = "Maximum value must be less than 50")
+    int maxInventory;
 
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
@@ -41,6 +50,8 @@ public abstract class Part implements Serializable {
         this.name = name;
         this.price = price;
         this.inv = inv;
+        this.minInventory = 0;
+        this.maxInventory = 50;
     }
 
     public Part(long id, String name, double price, int inv) {
@@ -48,6 +59,8 @@ public abstract class Part implements Serializable {
         this.name = name;
         this.price = price;
         this.inv = inv;
+        this.minInventory = 0;
+        this.maxInventory = 50;
     }
 
     public long getId() {
@@ -90,6 +103,20 @@ public abstract class Part implements Serializable {
         this.products = products;
     }
 
+    public int getMinInventory() {
+        return minInventory;
+    }
+
+    public void setMinInventory(int minInv) {
+        this.minInventory = minInv;
+    }
+
+    public int getMaxInventory() {
+        return maxInventory;
+    }
+
+    public void setMaxInventory(int maxInv) { this.maxInventory = maxInventory; }
+
     public String toString(){
         return this.name;
     }
@@ -101,6 +128,14 @@ public abstract class Part implements Serializable {
         Part part = (Part) o;
 
         return id == part.id;
+    }
+
+    public void validateLimits() {
+        if (this.inv < this.minInventory) {
+            throw new RuntimeException("Inventory does not meet min requirements.");
+        } else if (this.inv > this.maxInventory) {
+            throw new RuntimeException("Inventory exceed max limit.");
+        }
     }
 
     @Override

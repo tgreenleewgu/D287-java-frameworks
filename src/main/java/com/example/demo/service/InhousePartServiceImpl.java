@@ -51,6 +51,7 @@ public class InhousePartServiceImpl implements InhousePartService {
 
     @Override
     public void save(InhousePart thePart) {
+        thePart.validateLimits();
         partRepository.save(thePart);
 
     }
@@ -60,5 +61,7 @@ public class InhousePartServiceImpl implements InhousePartService {
         Long theIdl=(long)theId;
         partRepository.deleteById(theIdl);
     }
+
+
 
 }
