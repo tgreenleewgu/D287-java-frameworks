@@ -89,8 +89,16 @@
 
     <p><input type="text" th:field="*{partId}" placeholder="Part ID" /></p>
 
+    <div th:if="${#fields.hasErrors()}">
+        <ul>
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+        </ul>
+    </div>
+
     <p><input type="submit" value="Submit" /></p>
 </form>
+
+<p><errors path="price" cssClass=""error></errors><p>
 
 <a href="http://localhost:8080/">Link to Main Screen</a>
 </body>

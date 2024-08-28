@@ -675,7 +675,165 @@ line 54 outsourcepartservicelmp.java
     }
 
 ## H
+Created Class and Annotation for min inventory validation
+    ValidMinimum. java 
 
+    package com.example.demo.validators;
+
+    import javax.validation.Constraint;
+    import javax.validation.Payload;
+    import java.lang.annotation.ElementType;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
+    import java.lang.annotation.Target;
+    
+    /**
+    * Annotation to validate that the inventory count of a part is above the minimum threshold.
+      * This annotation is used at the class level and is validated by the MinimumValidator.
+        */
+        @Constraint(validatedBy = MinimumValidator.class)
+        @Target({ ElementType.TYPE })
+        @Retention(RetentionPolicy.RUNTIME)
+        public @interface ValidMinimum {
+        String message() default "Part count falls below set minimum";
+        Class<?>[] groups() default {};
+        Class<? extends Payload>[] payload() default {};
+        }
+
+MinimumValidator.java
+
+    package com.example.demo.validators;
+
+    import com.example.demo.domain.Part;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.ApplicationContext;
+    
+    import javax.validation.ConstraintValidator;
+    import javax.validation.ConstraintValidatorContext;
+    
+    public class MinimumValidator implements ConstraintValidator<ValidMinimum, Part> {
+    @Autowired
+    private ApplicationContext context;
+    public static ApplicationContext myContext;
+
+    @Override
+    public void initialize(ValidMinimum constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() > part.getMinInventory();
+    }
+    }
+repeated the process for the max inventory validation
+    ValidMaximum.java
+    
+    package com.example.demo.validators;
+
+    import com.example.demo.domain.Part;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.ApplicationContext;
+    
+    import javax.validation.ConstraintValidator;
+    import javax.validation.ConstraintValidatorContext;
+    
+    public class MaximumValidator implements ConstraintValidator<ValidMinimum, Part> {
+    @Autowired
+    private ApplicationContext context;
+    public static ApplicationContext myContext;
+
+    @Override
+    public void initialize(ValidMinimum constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() > part.getMinInventory();
+    }
+}
+    
+
+maximumValidator.java
+    
+    package com.example.demo.validators;
+
+    import javax.validation.Constraint;
+    import javax.validation.Payload;
+    import java.lang.annotation.ElementType;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
+    import java.lang.annotation.Target;
+    
+    
+    @Constraint(validatedBy = MaximumValidator.class)
+    @Target({ ElementType.TYPE })
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface ValidMaximum {
+    String message() default "Part count falls below set minimum";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+    }
+
+added domain model classes to parts. java  line 22-23
+
+    @ValidMinimum
+    @ValidMaximum
+
+added line 92-96 to inhousepart.java to show error message. 
+
+    <div th:if="${#fields.hasErrors()}">
+    <ul>
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+    </ul>
+    </div>
+
+added line 93-97 to outsourcedpart.java to show error message.
+
+    <div th:if="${#fields.hasErrors()}">
+    <ul>
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+    </ul>
+    </div>
+
+created error.html page to show error messages.
+
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Error</title>
+        <style>
+            body {
+                background-color: black;
+                color: #ff0000;
+                font-family: "Gill Sans", Helvetica, Arial, sans-serif;
+                padding: 50px;
+                text-align: center;
+            }
+            h1 {
+                color: #ff0000;
+            }
+            p {
+                margin: 20px 0;
+            }
+            a {
+                color: #ff0000;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #cc0000;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Error</h1>
+    <p>An error occurred. Inventory is outside of Min/Max.</p>
+    <p th:text="'Status: ' + ${status}"></p>
+    <a href="/">Back to Home</a>
+    </body>
+    </html>
 ## I
 
 ## J
