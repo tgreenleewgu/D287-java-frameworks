@@ -835,5 +835,26 @@ created error.html page to show error messages.
     </body>
     </html>
 ## I
+added 2 inventory test to lines 160 - 178 of PartsTest.java to set ad then get min/max inventory 
+
+      @Test
+    void getMinInv() {
+        int min_inv = 5;
+        partIn.setMinInventory(min_inv);
+        assertEquals(min_inv, partIn.getMinInventory());
+        partOut.setMinInventory(min_inv);
+        assertEquals(min_inv, partOut.getMinInventory());
+    }
+
+
+
+    @Test
+    void getMaxInv() {
+        int max_inv = 50;
+        partIn.setMaxInventory(max_inv);
+        assertEquals(max_inv, partIn.getMaxInventory());
+        partOut.setMaxInventory(max_inv);
+        assertEquals(max_inv, partOut.getMaxInventory());
+    } 
 
 ## J
