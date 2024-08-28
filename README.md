@@ -858,3 +858,4 @@ added 2 inventory test to lines 160 - 178 of PartsTest.java to set ad then get m
     } 
 
 ## J
+deleted DeletePartsValidation.java and VaildDeletParts.java looking into usages and there were none associated with the project.
